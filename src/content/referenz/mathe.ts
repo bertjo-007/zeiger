@@ -108,7 +108,39 @@ export const eintraege: ReferenzEintrag[] = [
         praktisch gleich
       `,
     },
-    lektionen: ['k02-l03'],
+    lektionen: ['k02-l03', 'k04-l05'],
     stichwoerter: ['Betrag', 'abs', 'Toleranz'],
+  },
+  {
+    id: 'trig',
+    name: 'sin / cos / tan / atan2',
+    kategorie: 'funktion',
+    header: 'math.h',
+    kurz: md`Winkelfunktionen. Sie rechnen im **Bogenmass**: Grad · π / 180. \`atan2(y, x)\` liefert den Winkel eines Punkts.`,
+    syntax: c`
+      double sin(double x);
+      double cos(double x);
+      double atan2(double y, double x);
+    `,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+        #include <math.h>
+
+        int main(void) {
+            const double PI = 3.14159265358979;
+            printf("%.3f\n", sin(30.0 * PI / 180.0));
+            printf("%.1f Grad\n", atan2(1.0, 1.0) * 180.0 / PI);
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        0.500
+        45.0 Grad
+      `,
+    },
+    fehler: [md`Grad statt Bogenmass übergeben.`, md`\`M_PI\` ist kein Teil des C-Standards; π selbst als Konstante anlegen.`],
+    lektionen: ['k04-l05'],
+    stichwoerter: ['Sinus', 'Kosinus', 'Winkel', 'Bogenmass', 'Trigonometrie'],
   },
 ];

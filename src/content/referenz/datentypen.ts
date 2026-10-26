@@ -185,4 +185,34 @@ export const eintraege: ReferenzEintrag[] = [
     lektionen: ['k02-l04'],
     stichwoerter: ['Zeichen', 'ASCII', 'Buchstabe'],
   },
+  {
+    id: 'bool',
+    name: 'bool / true / false',
+    kategorie: 'datentyp',
+    header: 'stdbool.h',
+    kurz: md`Wahrheitswert mit den Werten \`true\` (1) und \`false\` (0). In C17 aus \`<stdbool.h>\`, ab C23 fest eingebaut.`,
+    syntax: c`
+      #include <stdbool.h>
+      bool motor_laeuft = false;
+    `,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+        #include <stdbool.h>
+
+        int main(void) {
+            int fuellstand = 950;
+            bool fast_voll = fuellstand > 900;
+            printf("%d\n", fast_voll);
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        1
+      `,
+    },
+    fehler: [md`\`<stdbool.h>\` vergessen: «unknown type name 'bool'».`],
+    lektionen: ['k04-l03'],
+    stichwoerter: ['Wahrheitswert', 'wahr', 'falsch', 'boolean'],
+  },
 ];
