@@ -30,8 +30,11 @@ export function normalisiereAntwort(text: string, exakt = false): string {
   return exakt ? t : t.toLowerCase();
 }
 
-/** Entfernt Kommentare, Zeichen- und Textkonstanten, damit Regeln nur echten Code sehen. */
-export function nurCode(source: string): string {
+/**
+ * Entfernt Kommentare und den Inhalt von Zeichenketten, damit Regeln nur echten
+ * Code sehen. Zeichenkonstanten wie 'A' bleiben stehen: Sie sind Teil der Logik.
+ */
+export function nurCode(source: string, texteBehalten = false): string {
   let out = '';
   let i = 0;
   while (i < source.length) {
@@ -48,15 +51,25 @@ export function nurCode(source: string): string {
       out += ' ';
       continue;
     }
-    if (ch === '"' || ch === "'") {
-      const quote = ch;
-      out += quote + quote;
-      i++;
-      while (i < source.length && source[i] !== quote && source[i] !== '\n') {
-        if (source[i] === '\\') i++;
-        i++;
+    if (ch === "'") {
+      // Zeichenkonstante unverändert übernehmen (inklusive Escapes wie '\n').
+      let j = i + 1;
+      while (j < source.length && source[j] !== "'" && source[j] !== '\n') {
+        if (source[j] === '\\') j++;
+        j++;
       }
-      i++;
+      out += source.slice(i, j + 1);
+      i = j + 1;
+      continue;
+    }
+    if (ch === '"') {
+      let j = i + 1;
+      while (j < source.length && source[j] !== '"' && source[j] !== '\n') {
+        if (source[j] === '\\') j++;
+        j++;
+      }
+      out += texteBehalten ? source.slice(i, j + 1) : '""';
+      i = j + 1;
       continue;
     }
     out += ch;
@@ -66,11 +79,11 @@ export function nurCode(source: string): string {
 }
 
 export function pruefeRegeln(dateien: Record<string, string>, regeln: Regel[] = []): { regel: Regel; ok: boolean }[] {
-  const code = Object.entries(dateien)
-    .filter(([name]) => name.endsWith('.c') || name.endsWith('.h'))
-    .map(([, text]) => nurCode(text))
-    .join('\n');
+  const quellen = Object.entries(dateien).filter(([name]) => name.endsWith('.c') || name.endsWith('.h'));
+  const ohneTexte = quellen.map(([, text]) => nurCode(text)).join('\n');
+  const mitTexten = quellen.map(([, text]) => nurCode(text, true)).join('\n');
   return regeln.map((regel) => {
+    const code = regel.inTexten ? mitTexten : ohneTexte;
     const mussOk = regel.muss === undefined || new RegExp(regel.muss, 'm').test(code);
     const darfOk = regel.darfNicht === undefined || !new RegExp(regel.darfNicht, 'm').test(code);
     return { regel, ok: mussOk && darfOk };

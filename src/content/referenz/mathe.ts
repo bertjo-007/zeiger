@@ -52,4 +52,63 @@ export const eintraege: ReferenzEintrag[] = [
     lektionen: ['k01-l05'],
     stichwoerter: ['Potenz', 'hoch', 'Exponent'],
   },
+  {
+    id: 'round',
+    name: 'round / ceil / floor',
+    kategorie: 'funktion',
+    header: 'math.h',
+    kurz: md`Runden: \`round\` zur nächsten ganzen Zahl (0,5 weg von 0), \`ceil\` immer auf, \`floor\` immer ab. Ergebnis ist ein \`double\`.`,
+    syntax: c`
+      double round(double x);
+      double ceil(double x);
+      double floor(double x);
+    `,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+        #include <math.h>
+
+        int main(void) {
+            double x = 2.4;
+            printf("%.0f %.0f %.0f\n", round(x), ceil(x), floor(x));
+            printf("%d\n", (int)round(37.5));
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        2 3 2
+        38
+      `,
+    },
+    fehler: [md`\`(int)x\` schneidet nur ab und rundet nicht.`, md`Für eine ganze Zahl das Ergebnis noch casten: \`(int)round(x)\`.`],
+    lektionen: ['k02-l08'],
+    stichwoerter: ['runden', 'aufrunden', 'abrunden'],
+  },
+  {
+    id: 'fabs',
+    name: 'fabs',
+    kategorie: 'funktion',
+    header: 'math.h',
+    kurz: md`Betrag einer Kommazahl. Für ganze Zahlen gibt es \`abs\` aus \`<stdlib.h>\`. Typischer Einsatz: Kommazahlen mit Toleranz vergleichen.`,
+    syntax: c`double fabs(double x);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+        #include <math.h>
+
+        int main(void) {
+            double soll = 0.3, ist = 0.1 + 0.2;
+            if (fabs(ist - soll) < 1e-9) {
+                printf("praktisch gleich\n");
+            }
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        praktisch gleich
+      `,
+    },
+    lektionen: ['k02-l03'],
+    stichwoerter: ['Betrag', 'abs', 'Toleranz'],
+  },
 ];

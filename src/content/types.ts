@@ -88,6 +88,8 @@ export interface Regel {
   muss?: string;
   /** Regulärer Ausdruck, der nicht vorkommen darf. */
   darfNicht?: string;
+  /** Auch den Inhalt von Zeichenketten prüfen (z. B. Formatangaben wie `%-8s`). */
+  inTexten?: boolean;
   meldung: Md;
 }
 

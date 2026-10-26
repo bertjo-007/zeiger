@@ -28,4 +28,28 @@ export const eintraege: ReferenzEintrag[] = [
     lektionen: ['k01-l02'],
     stichwoerter: ['zurückgeben', 'beenden', 'Rückgabewert'],
   },
+  {
+    id: 'const',
+    name: 'const',
+    kategorie: 'schluesselwort',
+    kurz: md`Macht eine Variable unveränderlich. Sie muss bei der Deklaration initialisiert werden; jeder spätere Schreibversuch ist ein Compilerfehler.`,
+    syntax: c`const typ NAME = wert;`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            const int MAX_DREHZAHL = 3200;
+            printf("Grenze: %d U/min\n", MAX_DREHZAHL);
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        Grenze: 3200 U/min
+      `,
+    },
+    fehler: [md`\`const\` ohne Startwert ist nutzlos, weil man den Wert nie mehr setzen kann.`, md`Bei Zeigern genau lesen: \`const int *p\` (Wert konstant) ist nicht dasselbe wie \`int *const p\` (Zeiger konstant).`],
+    lektionen: ['k02-l06'],
+    stichwoerter: ['Konstante', 'unveränderlich', 'schreibgeschützt'],
+  },
 ];

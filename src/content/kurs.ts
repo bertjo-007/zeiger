@@ -4,8 +4,9 @@
  */
 import type { Aufgabe, Kapitel, Lektion } from './types.ts';
 import { kapitel as k01 } from './k01/index.ts';
+import { kapitel as k02 } from './k02/index.ts';
 
-export const KAPITEL: Kapitel[] = [k01];
+export const KAPITEL: Kapitel[] = [k01, k02];
 
 export interface AufgabeOrt {
   aufgabe: Aufgabe;
