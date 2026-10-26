@@ -13,14 +13,17 @@ import { eintraege as mathe } from './mathe.ts';
 import { eintraege as operatoren } from './operatoren.ts';
 import { eintraege as praeprozessor } from './praeprozessor.ts';
 import { eintraege as schluesselwoerter } from './schluesselwoerter.ts';
+import { eintraege as weitereSchluesselwoerter } from './schluesselwoerter-weitere.ts';
 import { eintraege as stdio } from './stdio.ts';
 import { eintraege as stdlib } from './stdlib.ts';
 import { eintraege as speicher } from './speicher.ts';
 import { eintraege as strings } from './strings.ts';
+import { eintraege as strukturen } from './strukturen.ts';
 import { eintraege as zeiger } from './zeiger.ts';
 
 export const REFERENZ: ReferenzEintrag[] = [
   ...schluesselwoerter,
+  ...weitereSchluesselwoerter,
   ...kontrolle,
   ...datentypen,
   ...operatoren,
@@ -29,6 +32,7 @@ export const REFERENZ: ReferenzEintrag[] = [
   ...strings,
   ...zeiger,
   ...speicher,
+  ...strukturen,
   ...mathe,
   ...makros,
   ...praeprozessor,
