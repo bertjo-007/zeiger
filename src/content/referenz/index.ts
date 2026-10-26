@@ -7,6 +7,7 @@ import { eintraege as datentypen } from './datentypen.ts';
 import { eintraege as escape } from './escape.ts';
 import { eintraege as format } from './format.ts';
 import { eintraege as konstrukte } from './konstrukte.ts';
+import { eintraege as kontrolle } from './kontrolle.ts';
 import { eintraege as makros } from './makros.ts';
 import { eintraege as mathe } from './mathe.ts';
 import { eintraege as operatoren } from './operatoren.ts';
@@ -17,6 +18,7 @@ import { eintraege as stdlib } from './stdlib.ts';
 
 export const REFERENZ: ReferenzEintrag[] = [
   ...schluesselwoerter,
+  ...kontrolle,
   ...datentypen,
   ...operatoren,
   ...stdio,

@@ -7,8 +7,10 @@ import { kapitel as k01 } from './k01/index.ts';
 import { kapitel as k02 } from './k02/index.ts';
 import { kapitel as k03 } from './k03/index.ts';
 import { kapitel as k04 } from './k04/index.ts';
+import { kapitel as k05 } from './k05/index.ts';
+import { kapitel as k06 } from './k06/index.ts';
 
-export const KAPITEL: Kapitel[] = [k01, k02, k03, k04];
+export const KAPITEL: Kapitel[] = [k01, k02, k03, k04, k05, k06];
 
 export interface AufgabeOrt {
   aufgabe: Aufgabe;
