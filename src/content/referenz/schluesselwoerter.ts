@@ -52,4 +52,34 @@ export const eintraege: ReferenzEintrag[] = [
     lektionen: ['k02-l06'],
     stichwoerter: ['Konstante', 'unveränderlich', 'schreibgeschützt'],
   },
+  {
+    id: 'void',
+    name: 'void',
+    kategorie: 'schluesselwort',
+    kurz: md`«Nichts»: Als Rückgabetyp gibt eine Funktion keinen Wert zurück, als Parameterliste \`(void)\` nimmt sie keine Parameter. \`void *\` ist ein Zeiger ohne bestimmten Typ (Kapitel 10).`,
+    syntax: c`
+      void zeige(void);
+      void *speicher;
+    `,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        void hupe(void) {
+            printf("Tuut\n");
+        }
+
+        int main(void) {
+            hupe();
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        Tuut
+      `,
+    },
+    fehler: [md`\`return wert;\` in einer \`void\`-Funktion.`, md`\`void main()\` statt \`int main(void)\`.`],
+    lektionen: ['k07-l01', 'k07-l02'],
+    stichwoerter: ['kein Rückgabewert', 'keine Parameter'],
+  },
 ];
