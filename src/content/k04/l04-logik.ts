@@ -114,7 +114,7 @@ export const lektion: Lektion = {
   fehler: [
     {
       titel: '& und | statt && und ||',
-      text: md`Einfache \`&\` und \`|\` sind **Bitoperatoren** (Kapitel 14). Sie liefern bei 0/1-Werten oft zufällig dasselbe, werten aber immer beide Seiten aus, und bei anderen Zahlen kommt Unsinn heraus. Für Bedingungen immer \`&&\` und \`||\`.`,
+      text: md`Einfache \`&\` und \`|\` sind **Bitoperatoren**. Sie liefern bei 0/1-Werten oft zufällig dasselbe, werten aber immer beide Seiten aus, und bei anderen Zahlen kommt Unsinn heraus. Für Bedingungen immer \`&&\` und \`||\`.`,
       falsch: c`if (tuer_zu & motor_bereit)`,
       richtig: c`if (tuer_zu && motor_bereit)`,
     },

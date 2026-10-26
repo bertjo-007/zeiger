@@ -37,7 +37,7 @@ export const lektion: Lektion = {
     4. \`main\`
     5. Definitionen der Funktionen
 
-    Bei grösseren Projekten wandern die Prototypen in eine **eigene Header-Datei** (\`.h\`). Genau so funktionieren auch \`stdio.h\` und \`math.h\`: Sie enthalten die Prototypen von \`printf\`, \`sqrt\` usw. Mehr dazu in Kapitel 13.
+    Bei grösseren Projekten wandern die Prototypen in eine **eigene Header-Datei** (\`.h\`). Genau so funktionieren auch \`stdio.h\` und \`math.h\`: Sie enthalten die Prototypen von \`printf\`, \`sqrt\` usw.
 
     > [!tipp] Namen in Prototypen
     > Die Parameternamen im Prototyp sind formal optional (\`int max(int, int);\`). Sie helfen aber beim Lesen, und Editoren zeigen sie beim Aufruf an. Schreib sie hin.

@@ -48,7 +48,7 @@ export const eintraege: ReferenzEintrag[] = [
         4096
       `,
     },
-    fehler: [md`\`^\` ist in C kein Potenzoperator, sondern das bitweise XOR. \`2 ^ 3\` ergibt 1, nicht 8.`, md`Für ganzzahlige Potenzen von 2 ist \`1 << n\` schneller und exakt (Kapitel 14).`],
+    fehler: [md`\`^\` ist in C kein Potenzoperator, sondern das bitweise XOR. \`2 ^ 3\` ergibt 1, nicht 8.`, md`Für ganzzahlige Potenzen von 2 ist \`1 << n\` schneller und exakt.`],
     lektionen: ['k01-l05'],
     stichwoerter: ['Potenz', 'hoch', 'Exponent'],
   },

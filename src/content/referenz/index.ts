@@ -15,7 +15,9 @@ import { eintraege as praeprozessor } from './praeprozessor.ts';
 import { eintraege as schluesselwoerter } from './schluesselwoerter.ts';
 import { eintraege as stdio } from './stdio.ts';
 import { eintraege as stdlib } from './stdlib.ts';
+import { eintraege as speicher } from './speicher.ts';
 import { eintraege as strings } from './strings.ts';
+import { eintraege as zeiger } from './zeiger.ts';
 
 export const REFERENZ: ReferenzEintrag[] = [
   ...schluesselwoerter,
@@ -25,6 +27,8 @@ export const REFERENZ: ReferenzEintrag[] = [
   ...stdio,
   ...stdlib,
   ...strings,
+  ...zeiger,
+  ...speicher,
   ...mathe,
   ...makros,
   ...praeprozessor,

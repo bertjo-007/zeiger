@@ -48,7 +48,7 @@ export const lektion: Lektion = {
     }
     ~~~
 
-    Diese Lektion programmiert **einen** Übergang: Zustand und Ereignis gehen hinein, der neue Zustand kommt heraus. In Kapitel 6 wiederholst du das in einer Schleife für viele Ereignisse hintereinander, und in Kapitel 15 läuft der Automat dauerhaft wie auf einem Mikrocontroller.
+    Diese Lektion programmiert **einen** Übergang: Zustand und Ereignis gehen hinein, der neue Zustand kommt heraus. In Kapitel 6 wiederholst du das in einer Schleife für viele Ereignisse hintereinander. Auf einem Mikrocontroller läuft so ein Automat dauerhaft in einer Endlosschleife.
 
     > [!praxis] Warum Zustandsautomaten so verbreitet sind
     > Steuerungen mit vielen verschachtelten \`if\` werden schnell unübersichtlich und fehleranfällig. Ein Zustandsautomat zwingt dazu, jede Kombination aus Zustand und Ereignis bewusst zu behandeln. Fehler wie «Motor läuft auf, obwohl das Tor schon offen ist» werden so viel unwahrscheinlicher.

@@ -97,7 +97,7 @@ export const lektion: Lektion = {
     `,
   },
   zeilen: [
-    { zeilen: '3-4', text: md`Die Grössen als Konstanten mit \`#define\`; so stehen sie nur an einer Stelle (Kapitel 13).` },
+    { zeilen: '3-4', text: md`Die Grössen als Konstanten mit \`#define\`; so stehen sie nur an einer Stelle.` },
     { zeilen: '7-11', text: md`Initialisierung Zeile für Zeile, jede Zeile in eigenen geschweiften Klammern.` },
     { zeilen: '14', text: md`Die äussere Schleife läuft über die Regale (Zeilen).` },
     { zeilen: '17-23', text: md`Die innere Schleife über die Fächer (Spalten). \`bestand[r][f]\` ist Fach f in Regal r.` },

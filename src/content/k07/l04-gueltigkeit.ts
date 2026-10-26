@@ -42,7 +42,7 @@ export const lektion: Lektion = {
     Hat eine lokale Variable denselben Namen wie eine globale, **überdeckt** die lokale die globale: Im Block gilt nur die lokale. Das ist erlaubt, führt aber leicht zu Verwechslungen. Vermeide gleiche Namen.
 
     > [!praxis] Globale Variablen auf Mikrocontrollern
-    > Auf Mikrocontrollern sind globale Variablen häufiger, weil Interrupt-Routinen (Kapitel 15) keine Parameter bekommen und Daten nur über globale Variablen mit dem Hauptprogramm austauschen können. Dort werden sie mit \`volatile\` gekennzeichnet.
+    > Auf Mikrocontrollern sind globale Variablen häufiger, weil Interrupt-Routinen keine Parameter bekommen und Daten nur über globale Variablen mit dem Hauptprogramm austauschen können. Dort werden sie mit \`volatile\` gekennzeichnet.
   `,
   syntax: [
     {
@@ -123,7 +123,7 @@ export const lektion: Lektion = {
     },
     {
       titel: 'Lokale Variable behält ihren Wert nicht',
-      text: md`Eine lokale Variable wird bei jedem Aufruf neu angelegt. Ein Zähler darin beginnt jedes Mal von vorn. Abhilfe: Rückgabewert, globale Variable oder \`static\` (Kapitel 14).`,
+      text: md`Eine lokale Variable wird bei jedem Aufruf neu angelegt. Ein Zähler darin beginnt jedes Mal von vorn. Abhilfe: Rückgabewert, globale Variable oder eine lokale Variable mit \`static\`: \`static int zaehler = 0;\` behält ihren Wert zwischen den Aufrufen.`,
     },
     {
       titel: 'Überdeckte globale Variable',

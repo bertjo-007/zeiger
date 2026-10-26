@@ -47,7 +47,7 @@ export const lektion: Lektion = {
     size_t anzahl = sizeof werte / sizeof werte[0];
     ~~~
 
-    Das funktioniert nur, wo das Array selbst deklariert ist, nicht in einer Funktion, die es als Parameter bekommt (nächste Lektion). Für feste Grössen nimmt man oft eine Konstante: \`#define ANZAHL_SENSOREN 8\` (Kapitel 13) und dann \`double temperatur[ANZAHL_SENSOREN];\`.
+    Das funktioniert nur, wo das Array selbst deklariert ist, nicht in einer Funktion, die es als Parameter bekommt (nächste Lektion). Für feste Grössen nimmt man oft eine Konstante: \`#define ANZAHL_SENSOREN 8\` und dann \`double temperatur[ANZAHL_SENSOREN];\`.
 
     > [!achtung] Kein Schutz vor falschen Indizes
     > C prüft nicht, ob ein Index gültig ist. \`werte[10]\` bei 5 Elementen liest oder überschreibt fremden Speicher. Zeiger erkennt solche Zugriffe und meldet einen Laufzeitfehler; auf einem PC oder Mikrocontroller passiert das oft unbemerkt. Lektion 8.4 behandelt das ausführlich.

@@ -60,7 +60,7 @@ export const lektion: Lektion = {
     }
     ~~~
 
-    Am PC verlässt man eine solche Schleife mit \`break\`, sobald ein Ende-Signal kommt. In Kapitel 15 siehst du die Superloop auf dem Mikrocontroller.
+    Am PC verlässt man eine solche Schleife mit \`break\`, sobald ein Ende-Signal kommt. Auf einem Mikrocontroller endet sie dagegen nie: Dort heisst dieses Muster Superloop.
   `,
   syntax: [
     {

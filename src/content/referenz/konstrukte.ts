@@ -126,7 +126,7 @@ export const eintraege: ReferenzEintrag[] = [
       `,
     },
     fehler: [md`Variable nach dem Block verwenden, in dem sie deklariert wurde.`, md`Globale Variable durch gleichnamige lokale überdeckt.`],
-    lektionen: ['k07-l04', 'k14-l01'],
+    lektionen: ['k07-l04'],
     stichwoerter: ['lokal', 'global', 'Scope', 'Lebensdauer'],
   },
 ];

@@ -42,7 +42,7 @@ export const lektion: Lektion = {
     ### Spitze Klammern oder Anführungszeichen?
 
     - \`#include <stdio.h>\` sucht in den Verzeichnissen des Compilers. So bindest du Header der **Standardbibliothek** ein.
-    - \`#include "motor.h"\` sucht **zuerst im eigenen Projekt**. So bindest du **eigene** Header ein (Kapitel 13).
+    - \`#include "motor.h"\` sucht **zuerst im eigenen Projekt**. So bindest du **eigene** Header ein.
 
     > [!praxis] Header bei Mikrocontrollern
     > Hersteller liefern Header mit, die Register und Pins beschreiben, etwa \`<avr/io.h>\` für AVR-Chips oder \`"stm32f4xx.h"\` für STM32. Das Prinzip ist genau dasselbe.

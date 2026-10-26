@@ -48,7 +48,7 @@ export const lektion: Lektion = {
     - **Binärkonstanten** wie \`0b11001000\` sind erst ab C23 Standard. In C17 sind sie nur eine Erweiterung der Compiler, darum verwendet dieser Kurs Hex.
 
     > [!praxis] Warum Hex überall auftaucht
-    > Datenblätter von Mikrocontrollern geben Register und Adressen in Hex an: «Schreibe 0x3F in das Register PORTB». Jede Hex-Ziffer steht für vier Pins. \`0x3F\` = \`0011 1111\` schaltet also die Pins 0 bis 5 ein und 6 und 7 aus. In Kapitel 14 und 15 setzt du das mit Bitoperatoren um.
+    > Datenblätter von Mikrocontrollern geben Register und Adressen in Hex an: «Schreibe 0x3F in das Register PORTB». Jede Hex-Ziffer steht für vier Pins. \`0x3F\` = \`0011 1111\` schaltet also die Pins 0 bis 5 ein und 6 und 7 aus. Später setzt du das mit Bitoperatoren um.
   `,
   syntax: [
     {

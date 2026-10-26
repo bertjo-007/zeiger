@@ -101,7 +101,7 @@ export const lektion: Lektion = {
     },
     {
       titel: 'Verschachtelte Kommentare',
-      text: md`Ein \`/* … */\` innerhalb eines anderen funktioniert nicht: Das erste \`*/\` beendet alles, und der Rest wird zu ungültigem Code. Zum Auskommentieren grösserer Blöcke mit Kommentaren darin nimmt man \`//\` vor jeder Zeile oder \`#if 0 … #endif\` (Kapitel 13).`,
+      text: md`Ein \`/* … */\` innerhalb eines anderen funktioniert nicht: Das erste \`*/\` beendet alles, und der Rest wird zu ungültigem Code. Zum Auskommentieren grösserer Blöcke mit Kommentaren darin nimmt man \`//\` vor jeder Zeile oder \`#if 0 … #endif\`.`,
       falsch: c`
         /* alter Block:
            printf("x\n"); /* Test */

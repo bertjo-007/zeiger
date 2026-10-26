@@ -32,7 +32,7 @@ export const lektion: Lektion = {
     Der Name erklärt die Bedeutung, und eine Änderung geschieht an einer einzigen Stelle.
 
     > [!info] #define
-    > Oft sieht man stattdessen \`#define MAX_DREHZAHL 3200\`. Das ist eine Textersetzung durch den Präprozessor (Kapitel 13). \`const\` hat einen Typ und wird vom Compiler geprüft; beides ist verbreitet.
+    > Oft sieht man stattdessen \`#define MAX_DREHZAHL 3200\`. Das ist eine Textersetzung durch den Präprozessor. \`const\` hat einen Typ und wird vom Compiler geprüft; beides ist verbreitet.
 
     ### Regeln für Namen
 
