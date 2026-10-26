@@ -47,6 +47,7 @@ export const test: Aufgabe[] = [
 
       void aendere(int x) {
           x = 99;
+          printf("in aendere: %d\n", x);
       }
 
       int main(void) {
@@ -57,6 +58,7 @@ export const test: Aufgabe[] = [
       }
     `,
     ausgabe: out`
+      in aendere: 99
       1
     `,
   },

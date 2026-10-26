@@ -24,7 +24,7 @@ export function KapitelPage() {
       </header>
       <div className="panel panel-pad stack" style={{ gap: '0.6rem', marginBottom: '1.5rem' }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
-          <strong>{Math.round(f.anteil * 100)} % erledigt</strong>
+          <strong>{Math.round(f.anteil * 100)} % erledigt</strong>
           <span className="muted" style={{ fontSize: '0.85rem' }}>
             Lektionen {f.lektionen.fertig}/{f.lektionen.gesamt} · Übungen {f.uebungen.geloest}/{f.uebungen.gesamt}
           </span>
@@ -59,11 +59,11 @@ export function KapitelPage() {
           <span>
             <div style={{ fontWeight: 560 }}>Kapiteltest</div>
             <div className="sub">
-              {Math.min(12, k.test.length)} Fragen · bestanden ab {Math.round(BESTANDEN_AB * 100)} %
+              {Math.min(12, k.test.length)} Fragen · bestanden ab {Math.round(BESTANDEN_AB * 100)} %
             </div>
           </span>
           <span className="muted" style={{ fontSize: '0.85rem' }}>
-            {f.test.beste !== null ? `beste: ${Math.round(f.test.beste * 100)} %` : 'noch nicht gemacht'}
+            {f.test.beste !== null ? `beste: ${Math.round(f.test.beste * 100)} %` : 'noch nicht gemacht'}
           </span>
         </Link>
       </div>

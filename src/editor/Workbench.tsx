@@ -5,7 +5,7 @@
 import { ArrowCounterClockwise, Copy, FileC, FilePlus, Gear, Hash, Play, Stop, Trash } from '@phosphor-icons/react';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { compiler } from '../compiler/host.ts';
-import { displayCommand } from '../compiler/toolchain.ts';
+import { displayCommand } from '../compiler/befehl.ts';
 import type { CompileResult, Diagnostic, RunResult, SourceFiles } from '../compiler/types.ts';
 import { dateiText } from '../exercises/checker.ts';
 import { useSettings } from '../ui/settings.ts';

@@ -137,14 +137,14 @@ export function TestPage() {
             {gesamt
               ? `Rund ${GESAMTTEST_FRAGEN} Fragen aus allen Kapiteln und ${GESAMTTEST_PROGRAMME} Programmieraufgaben.`
               : `${Math.min(KAPITELTEST_FRAGEN, poolGroesse)} Fragen, zufällig aus ${poolGroesse} gezogen. Jeder Durchgang ist etwas anders.`}{' '}
-            Bestanden ab {Math.round(BESTANDEN_AB * 100)} %. Die Auswertung kommt am Schluss, mit Erklärungen zu allen falschen Antworten.
+            Bestanden ab {Math.round(BESTANDEN_AB * 100)} %. Die Auswertung kommt am Schluss, mit Erklärungen zu allen falschen Antworten.
           </p>
         </header>
         <div className="row" style={{ marginBottom: '1.5rem' }}>
           <button type="button" className="btn btn-primary" onClick={starte} disabled={poolGroesse === 0}>
             Test starten <ArrowRight size={16} />
           </button>
-          {beste !== null && <span className="muted">Bestes Ergebnis bisher: {Math.round(beste * 100)} %</span>}
+          {beste !== null && <span className="muted">Bestes Ergebnis bisher: {Math.round(beste * 100)} %</span>}
         </div>
         {verlauf.length > 0 && (
           <section className="panel panel-pad">
@@ -157,7 +157,7 @@ export function TestPage() {
                 .map((t) => (
                   <li key={t.id} className="list-link" style={{ cursor: 'default' }}>
                     {t.bestanden ? <CheckCircle size={16} weight="fill" color="var(--ok)" /> : <XCircle size={16} weight="fill" color="var(--err)" />}
-                    {t.punkte} von {t.max} ({Math.round((t.punkte / t.max) * 100)} %)
+                    {t.punkte} von {t.max} ({Math.round((t.punkte / t.max) * 100)} %)
                     <span className="muted">{new Date(t.zeit).toLocaleDateString('de-CH', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span>
                   </li>
                 ))}
@@ -259,9 +259,9 @@ export function TestPage() {
           <h1 style={{ fontSize: '1.5rem' }}>{bestanden ? 'Bestanden' : 'Noch nicht bestanden'}</h1>
         </div>
         <div className="row" style={{ alignItems: 'baseline' }}>
-          <span className="big-number">{Math.round(quote * 100)} %</span>
+          <span className="big-number">{Math.round(quote * 100)} %</span>
           <span className="muted">
-            {punkte} von {fragen.length} richtig, bestanden ab {Math.round(BESTANDEN_AB * 100)} %
+            {punkte} von {fragen.length} richtig, bestanden ab {Math.round(BESTANDEN_AB * 100)} %
           </span>
         </div>
         {schwach.length > 0 && (

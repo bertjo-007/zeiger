@@ -14,7 +14,7 @@ const REIHENFOLGE: ReferenzKategorie[] = ['schluesselwort', 'datentyp', 'operato
 function filtere(q: string, kat: ReferenzKategorie | 'alle' | 'ascii'): ReferenzEintrag[] {
   const s = q.trim().toLowerCase();
   return REFERENZ.filter((r) => (kat === 'alle' || r.kategorie === kat) && (!s || r.name.toLowerCase().includes(s) || r.kurz.toLowerCase().includes(s) || (r.stichwoerter ?? []).some((w) => w.toLowerCase().includes(s)) || (r.header ?? '').includes(s))).sort(
-    (a, b) => REIHENFOLGE.indexOf(a.kategorie) - REIHENFOLGE.indexOf(b.kategorie) || a.name.localeCompare(b.name, 'de'),
+    (a, b) => REIHENFOLGE.indexOf(a.kategorie) - REIHENFOLGE.indexOf(b.kategorie) || a.name.replace(/^_+/, '').localeCompare(b.name.replace(/^_+/, ''), 'de'),
   );
 }
 

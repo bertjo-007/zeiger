@@ -3,8 +3,11 @@
  * (Prüfskript, Tests); darum ohne DOM und ohne Vite-Eigenheiten.
  */
 import * as yowasp from '@yowasp/clang';
+import { displayCommand, sourceNames, VISIBLE_FLAGS } from './befehl.ts';
 import { parseDiagnostics } from './diagnostics.ts';
 import type { CompileResult, Frame, SourceFiles } from './types.ts';
+
+export { displayCommand, sourceNames, VISIBLE_FLAGS };
 
 // Das Paket exportiert runClang, seine Typdefinition kennt es aber (noch) nicht.
 const runClang = (yowasp as unknown as { runClang: yowasp.Command }).runClang;
@@ -12,9 +15,6 @@ const runLLVM = yowasp.runLLVM;
 
 export const SUPPORT_FILE = '__zeiger_laufzeit.c';
 const SUPPORT_OBJECT = '__zeiger_laufzeit.o';
-
-/** Die Flags, die auch auf einem eigenen PC sinnvoll wären (werden angezeigt). */
-export const VISIBLE_FLAGS = ['-std=c17', '-Wall', '-Wextra', '-pedantic', '-g'];
 
 /** Zusätzliche Flags nur für die Lernumgebung (Ziel, Laufzeitprüfungen). */
 const HIDDEN_COMPILE_FLAGS = ['--target=wasm32-wasip1', '-O0', '-fno-color-diagnostics', '-fsanitize=undefined', '-fsanitize-trap=undefined'];
@@ -72,14 +72,6 @@ function compiledSupport(source: string, onProgress?: FetchProgress): Promise<Ui
 /** Lädt Clang und übersetzt die Laufzeit-Hilfen, damit der erste echte Lauf schnell ist. */
 export async function warmup(support: string, onProgress?: FetchProgress): Promise<void> {
   await compiledSupport(support, onProgress);
-}
-
-export function sourceNames(files: SourceFiles): string[] {
-  return Object.keys(files).filter((f) => f.endsWith('.c'));
-}
-
-export function displayCommand(files: SourceFiles): string {
-  return ['clang', ...VISIBLE_FLAGS, ...sourceNames(files), '-o', 'programm'].join(' ');
 }
 
 const decoder = () => new TextDecoder('utf-8', { fatal: false });

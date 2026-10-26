@@ -6,7 +6,7 @@ import { gesamtFortschritt, kapitelFortschritt, themenStatistik } from '../../pr
 import { useAufgabeStaende, useEreignisse, useFaellig, useLektionStaende, useTests, useZuletzt } from '../hooks.ts';
 
 /** Anzeige mit Leerzeichen (Schweizer Schreibweise), Breite für CSS ohne. */
-const pct = (x: number) => `${Math.round(x * 100)} %`;
+const pct = (x: number) => `${Math.round(x * 100)} %`;
 const breite = (x: number) => `${Math.round(x * 100)}%`;
 
 export function StartPage() {

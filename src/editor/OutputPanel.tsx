@@ -27,7 +27,7 @@ export function CompilerLoading({ status }: { status: CompilerStatus }) {
   return (
     <div className="compiler-loading">
       <div>
-        Compiler wird geladen{status.total > 0 ? `: ${pct} % von ${fmtMB(status.total)}` : ' …'}
+        Compiler wird geladen{status.total > 0 ? `: ${pct} % von ${fmtMB(status.total)}` : ' …'}
       </div>
       <div className="bar">
         <span style={{ width: `${pct}%` }} />

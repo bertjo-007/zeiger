@@ -38,7 +38,7 @@ export function FortschrittPage() {
           <span className="k">Antworten in den letzten 7 Tagen</span>
         </div>
         <div className="stat">
-          <span className="v">{letzteWoche.length > 0 ? `${Math.round((letzteWoche.filter((e) => e.richtig).length / letzteWoche.length) * 100)} %` : 'keine'}</span>
+          <span className="v">{letzteWoche.length > 0 ? `${Math.round((letzteWoche.filter((e) => e.richtig).length / letzteWoche.length) * 100)} %` : 'keine'}</span>
           <span className="k">davon richtig</span>
         </div>
         <div className="stat">
@@ -75,7 +75,7 @@ export function FortschrittPage() {
                   <td>
                     {f.uebungen.geloest}/{f.uebungen.gesamt}
                   </td>
-                  <td>{f.test.bestanden ? <span className="chip chip-ok">bestanden</span> : f.test.beste !== null ? `${Math.round(f.test.beste * 100)} %` : <span className="muted">offen</span>}</td>
+                  <td>{f.test.bestanden ? <span className="chip chip-ok">bestanden</span> : f.test.beste !== null ? `${Math.round(f.test.beste * 100)} %` : <span className="muted">offen</span>}</td>
                   <td>
                     <div className={`bar${f.anteil >= 0.999 ? ' bar-ok' : ''}`}>
                       <span style={{ width: `${Math.round(f.anteil * 100)}%` }} />
@@ -145,7 +145,7 @@ export function FortschrittPage() {
                       <li key={t.id}>
                         <Link to={`/test/${t.kapitel}`} className="list-link">
                           <Exam size={16} color={t.bestanden ? 'var(--ok)' : 'var(--text-3)'} />
-                          {k ? `Kapitel ${k.nr}` : 'Gesamttest'}: {Math.round((t.punkte / t.max) * 100)} %
+                          {k ? `Kapitel ${k.nr}` : 'Gesamttest'}: {Math.round((t.punkte / t.max) * 100)} %
                           <span className="muted">{datum(t.zeit)}</span>
                         </Link>
                       </li>

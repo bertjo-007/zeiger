@@ -190,7 +190,7 @@ export const eintraege: ReferenzEintrag[] = [
     name: 'bool / true / false',
     kategorie: 'datentyp',
     header: 'stdbool.h',
-    kurz: md`Wahrheitswert mit den Werten \`true\` (1) und \`false\` (0). In C17 aus \`<stdbool.h>\`, ab C23 fest eingebaut.`,
+    kurz: md`Wahrheitswert mit den Werten \`true\` (1) und \`false\` (0). In C17 heisst der eingebaute Typ \`_Bool\`; \`<stdbool.h>\` macht daraus \`bool\`. Ab C23 ist \`bool\` fest eingebaut.`,
     syntax: c`
       #include <stdbool.h>
       bool motor_laeuft = false;
@@ -213,6 +213,6 @@ export const eintraege: ReferenzEintrag[] = [
     },
     fehler: [md`\`<stdbool.h>\` vergessen: «unknown type name 'bool'».`],
     lektionen: ['k04-l03'],
-    stichwoerter: ['Wahrheitswert', 'wahr', 'falsch', 'boolean'],
+    stichwoerter: ['Wahrheitswert', 'wahr', 'falsch', 'boolean', '_Bool'],
   },
 ];
