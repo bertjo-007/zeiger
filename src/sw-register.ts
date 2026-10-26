@@ -14,12 +14,14 @@ export type UpdateListener = (apply: () => void) => void;
 export function registerServiceWorker(onUpdate: UpdateListener) {
   if (import.meta.env.DEV || !('serviceWorker' in navigator)) return;
   const url = `${import.meta.env.BASE_URL}sw.js`;
+  let updateBestaetigt = false;
   navigator.serviceWorker
     .register(url, { scope: import.meta.env.BASE_URL })
     .then((registration) => {
       const offerUpdate = (worker: ServiceWorker | null) => {
         if (!worker) return;
         onUpdate(() => {
+          updateBestaetigt = true;
           worker.postMessage('SKIP_WAITING');
         });
       };
@@ -39,6 +41,8 @@ export function registerServiceWorker(onUpdate: UpdateListener) {
   let reloading = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (reloading) return;
+    // Erster Besuch auf einem Server, der die Header schon selbst setzt: kein Neuladen nötig.
+    if (!updateBestaetigt && globalThis.crossOriginIsolated) return;
     reloading = true;
     window.location.reload();
   });

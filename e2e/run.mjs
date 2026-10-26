@@ -54,6 +54,13 @@ await page.setViewport({ width: 1440, height: 900 });
 
 await schritt('Startseite', async () => {
   await page.goto(BASE + '/', { waitUntil: 'load' });
+  // Auf GitHub Pages bringt erst der Service Worker die Isolation; die Seite lädt dann einmal neu.
+  for (let i = 0; i < 40; i++) {
+    const isoliert = await page.evaluate(() => globalThis.crossOriginIsolated).catch(() => false);
+    if (isoliert) break;
+    await sleep(500);
+  }
+  await page.waitForFunction(() => navigator.serviceWorker?.controller !== null || !document.querySelector('script[src*="/assets/"]'), { timeout: 20000 }).catch(() => {});
   await waitText(page, 'Strukturen und weitere Datentypen');
   await shot(page, 'start');
 });
