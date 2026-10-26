@@ -1,0 +1,101 @@
+/*
+ * Designsystem von Zeiger.
+ * - Eine Akzentfarbe (Ozeanblau). Grün, Rot und Bernstein nur mit Bedeutung:
+ *   richtig, Fehler, Warnung.
+ * - Radien: 6 px für Bedienelemente (Knöpfe, Felder, Chips), 10 px für Flächen.
+ * - Geist für Text, Geist Mono für Code und Zahlen in Code-Nähe.
+ */
+:root {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --r-ctl: 6px;
+  --r-panel: 10px;
+
+  --sidebar-w: 288px;
+  --topbar-h: 56px;
+  --read-w: 46rem;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --surface-3: #e9ecf1;
+  --border: #e1e5eb;
+  --border-strong: #cdd3dc;
+  --text: #161a20;
+  --text-2: #464e5c;
+  --text-3: #636b79;
+  --accent: #1f6fab;
+  --accent-strong: #175c8f;
+  --accent-soft: #e5eff8;
+  --accent-text: #ffffff;
+  --ok: #2c7a45;
+  --ok-soft: #e6f3ea;
+  --err: #b8382c;
+  --err-soft: #fbebe9;
+  --warn: #8f5c00;
+  --warn-soft: #fbf2df;
+  --focus: #1f6fab;
+  --shadow: 0 1px 2px rgb(22 26 32 / 0.06), 0 4px 16px rgb(22 26 32 / 0.06);
+  --shadow-pop: 0 8px 32px rgb(22 26 32 / 0.16);
+
+  --code-bg: #fbfcfd;
+  --code-gutter: #8a919d;
+  --code-sel: #d6e6f5;
+  --term-bg: #f3f5f8;
+
+  --syn-keyword: #9b2c6f;
+  --syn-type: #0b6a88;
+  --syn-string: #2b7531;
+  --syn-number: #a5560a;
+  --syn-comment: #6a7280;
+  --syn-pre: #6d48b0;
+  --syn-func: #1d5ba1;
+  --syn-op: #464e5c;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #101216;
+  --surface: #161a20;
+  --surface-2: #1c2129;
+  --surface-3: #242a33;
+  --border: #29303a;
+  --border-strong: #39414d;
+  --text: #e6e9ef;
+  --text-2: #b4bac6;
+  --text-3: #8f97a6;
+  --accent: #6db3e8;
+  --accent-strong: #8fc5ef;
+  --accent-soft: #17304a;
+  --accent-text: #0d1a26;
+  --ok: #63c487;
+  --ok-soft: #14301f;
+  --err: #f0897d;
+  --err-soft: #3a1d1a;
+  --warn: #e0b04f;
+  --warn-soft: #342913;
+  --focus: #8fc5ef;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+  --shadow-pop: 0 8px 32px rgb(0 0 0 / 0.5);
+
+  --code-bg: #13161b;
+  --code-gutter: #6d7584;
+  --code-sel: #24405c;
+  --term-bg: #0d0f13;
+
+  --syn-keyword: #e48dc0;
+  --syn-type: #67c6db;
+  --syn-string: #98d18f;
+  --syn-number: #efa35f;
+  --syn-comment: #808999;
+  --syn-pre: #b9a0f2;
+  --syn-func: #84b9f1;
+  --syn-op: #b4bac6;
+}
