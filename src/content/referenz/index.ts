@@ -13,12 +13,14 @@ import { eintraege as operatoren } from './operatoren.ts';
 import { eintraege as praeprozessor } from './praeprozessor.ts';
 import { eintraege as schluesselwoerter } from './schluesselwoerter.ts';
 import { eintraege as stdio } from './stdio.ts';
+import { eintraege as stdlib } from './stdlib.ts';
 
 export const REFERENZ: ReferenzEintrag[] = [
   ...schluesselwoerter,
   ...datentypen,
   ...operatoren,
   ...stdio,
+  ...stdlib,
   ...mathe,
   ...makros,
   ...praeprozessor,

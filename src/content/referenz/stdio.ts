@@ -86,4 +86,129 @@ export const eintraege: ReferenzEintrag[] = [
     lektionen: ['k01-l03'],
     stichwoerter: ['Zeichen ausgeben'],
   },
+  {
+    id: 'scanf',
+    name: 'scanf',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Liest formatierte Werte von der Standardeingabe. Gibt die Anzahl erfolgreich gelesener Werte zurück, bei Ende der Eingabe \`EOF\`.`,
+    syntax: c`int scanf(const char *format, ...);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            int n = 0;
+            double x = 0.0;
+            if (scanf("%d %lf", &n, &x) != 2) {
+                printf("Eingabe ungültig\n");
+                return 1;
+            }
+            printf("%d mal %.1f = %.1f\n", n, x, n * x);
+            return 0;
+        }
+      `,
+      stdin: '3 2.5\n',
+      ausgabe: out`
+        3 2.5
+        3 mal 2.5 = 7.5
+      `,
+    },
+    fehler: [
+      md`\`&\` vor der Variable vergessen (ausser bei \`char\`-Arrays).`,
+      md`\`%f\` statt \`%lf\` für \`double\`.`,
+      md`\`%c\` ohne Leerzeichen davor liest einen übrig gebliebenen Zeilenumbruch.`,
+      md`\`%s\` ohne Breite riskiert einen Pufferüberlauf.`,
+      md`Rückgabewert nicht geprüft.`,
+    ],
+    lektionen: ['k03-l01', 'k03-l02', 'k03-l03'],
+    stichwoerter: ['Eingabe', 'einlesen', 'Tastatur', '%lf'],
+  },
+  {
+    id: 'getchar',
+    name: 'getchar',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Liest ein einzelnes Zeichen von der Standardeingabe. Gibt \`EOF\` zurück, wenn die Eingabe zu Ende ist. Das Ergebnis ist ein \`int\`, damit \`EOF\` unterscheidbar bleibt.`,
+    syntax: c`int getchar(void);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            int ch;
+            int anzahl = 0;
+            while ((ch = getchar()) != '\n' && ch != EOF) {
+                anzahl++;
+            }
+            printf("%d Zeichen\n", anzahl);
+            return 0;
+        }
+      `,
+      stdin: 'Encoder\n',
+      ausgabe: out`
+        Encoder
+        7 Zeichen
+      `,
+    },
+    fehler: [md`Ergebnis in einem \`char\` speichern: Dann ist \`EOF\` nicht sicher erkennbar. Immer \`int\` verwenden.`],
+    lektionen: ['k03-l02'],
+    stichwoerter: ['Zeichen einlesen', 'Puffer leeren', 'EOF'],
+  },
+  {
+    id: 'fprintf',
+    name: 'fprintf',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Wie \`printf\`, schreibt aber in einen frei wählbaren Strom: eine Datei oder \`stderr\` für Fehlermeldungen.`,
+    syntax: c`int fprintf(FILE *strom, const char *format, ...);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            printf("Normale Ausgabe\n");
+            fprintf(stderr, "Warnung: Druck niedrig\n");
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        Normale Ausgabe
+        Warnung: Druck niedrig
+      `,
+    },
+    fehler: [md`Den Strom vergessen: \`fprintf("Text")\` ist falsch, der erste Parameter ist der Strom.`],
+    lektionen: ['k03-l03'],
+    stichwoerter: ['stderr', 'Fehlerausgabe', 'Datei schreiben'],
+  },
+  {
+    id: 'fgets',
+    name: 'fgets',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Liest eine Zeile (inklusive \`\n\`), höchstens aber Grösse − 1 Zeichen, aus einem Strom wie \`stdin\` oder einer Datei. Gibt bei Ende \`NULL\` zurück. Sicherer Ersatz für \`gets\`.`,
+    syntax: c`char *fgets(char *puffer, int groesse, FILE *strom);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            char zeile[40];
+            if (fgets(zeile, sizeof zeile, stdin) != NULL) {
+                printf("Gelesen: %s", zeile);
+            }
+            return 0;
+        }
+      `,
+      stdin: 'Linie 3 bereit\n',
+      ausgabe: out`
+        Linie 3 bereit
+        Gelesen: Linie 3 bereit
+      `,
+    },
+    fehler: [md`Das mitgelesene \`\n\` vergessen.`, md`Feste Zahl statt \`sizeof puffer\` als Grösse.`],
+    veraltet: md`Die alte Funktion \`gets\` hatte keine Längenbegrenzung und wurde mit C11 entfernt. Immer \`fgets\` verwenden.`,
+    lektionen: ['k03-l04'],
+    stichwoerter: ['Zeile einlesen', 'gets', 'sicher'],
+  },
 ];

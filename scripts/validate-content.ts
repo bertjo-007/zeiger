@@ -134,7 +134,8 @@ async function pruefeAufgabe(wo: string, a: Aufgabe) {
       if (!c.ok || !c.wasm) return err(wo, `kompiliert nicht: ${meldungen(c, 'error').join('; ')}`);
       if (meldungen(c, 'warning').length > 0) warn(wo, `Warnungen: ${meldungen(c, 'warning').join('; ')}`);
       const r = await exec.run(c.wasm, { stdin: a.stdin ?? '' });
-      const ist = normalisiereAusgabe(transcriptText(r.transcript));
+      // Vorhergesagt wird nur die Ausgabe des Programms, ohne das Echo der Eingabe.
+      const ist = normalisiereAusgabe(r.stdout);
       if (r.end !== 'exit') err(wo, `Lauf endete mit ${r.end}`);
       else if (ist !== normalisiereAusgabe(a.ausgabe)) err(wo, `Ausgabe weicht ab.\n    erwartet: ${JSON.stringify(normalisiereAusgabe(a.ausgabe))}\n    ist:      ${JSON.stringify(ist)}`);
       break;

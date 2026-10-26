@@ -148,7 +148,7 @@ export function VorhersageEingabe({ aufgabe, antwort, setAntwort, bewertung, dis
       <CodeBlock code={aufgabe.code} numbered copy={false} />
       {aufgabe.stdin && (
         <p className="muted" style={{ fontSize: '0.88rem' }}>
-          Eingabe beim Ausführen: <code className="mono">{aufgabe.stdin.trim().replace(/\n/g, ' ⏎ ')}</code>
+          Eingabe beim Ausführen: <code className="mono">{aufgabe.stdin.trim().replace(/\n/g, ' ⏎ ')}</code>. Sage nur voraus, was das Programm selbst ausgibt.
         </p>
       )}
       <div className="field">
