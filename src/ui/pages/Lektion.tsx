@@ -94,7 +94,9 @@ function ZeilenErklaerung({ lektion }: { lektion: Lektion }) {
       <dl className="line-notes">
         {lektion.zeilen.map((z, i) => (
           <div key={i} className="line-note" onMouseEnter={() => setHl(z.zeilen)} onMouseLeave={() => setHl(undefined)} onFocus={() => setHl(z.zeilen)} tabIndex={0}>
-            <dt>{z.zeilen.includes('-') ? 'Zeilen' : 'Zeile'} {z.zeilen.replace('-', ' bis ')}</dt>
+            <dt>
+              {/[-,]/.test(z.zeilen) ? 'Zeilen' : 'Zeile'} {z.zeilen.replace(/-/g, ' bis ').replace(/,/g, ', ')}
+            </dt>
             <dd>
               <Markdown text={z.text} />
             </dd>

@@ -9,7 +9,7 @@ import { CodeBlock, OutputBlock } from '../code/CodeBlock.tsx';
 import { Inline, Markdown } from '../Markdown.tsx';
 import { NotFound } from './NotFound.tsx';
 
-const REIHENFOLGE: ReferenzKategorie[] = ['schluesselwort', 'datentyp', 'operator', 'funktion', 'praeprozessor', 'format', 'escape', 'konstrukt'];
+const REIHENFOLGE: ReferenzKategorie[] = ['schluesselwort', 'datentyp', 'operator', 'funktion', 'makro', 'praeprozessor', 'format', 'escape', 'konstrukt'];
 
 function filtere(q: string, kat: ReferenzKategorie | 'alle' | 'ascii'): ReferenzEintrag[] {
   const s = q.trim().toLowerCase();

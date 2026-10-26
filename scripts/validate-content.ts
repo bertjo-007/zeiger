@@ -219,9 +219,11 @@ function pruefeStruktur(l: Lektion) {
   const code = Object.values(dateienAus(l.beispiel.code))[0];
   const zeilen = code.split('\n').length;
   for (const z of l.zeilen) {
-    const m = /^(\d+)(?:-(\d+))?$/.exec(z.zeilen);
-    if (!m) err(wo, `ungültige Zeilenangabe «${z.zeilen}»`);
-    else if (Number(m[2] ?? m[1]) > zeilen) err(wo, `Zeilenangabe ${z.zeilen} liegt hinter dem Ende des Beispiels (${zeilen} Zeilen)`);
+    for (const teil of z.zeilen.split(',')) {
+      const m = /^(\d+)(?:-(\d+))?$/.exec(teil.trim());
+      if (!m) err(wo, `ungültige Zeilenangabe «${z.zeilen}»`);
+      else if (Number(m[2] ?? m[1]) > zeilen) err(wo, `Zeilenangabe ${z.zeilen} liegt hinter dem Ende des Beispiels (${zeilen} Zeilen)`);
+    }
   }
   const unstufen = l.uebungen.filter((u) => !u.stufe);
   if (unstufen.length > 0) warn(wo, `Übungen ohne Stufe: ${unstufen.map((u) => u.id).join(', ')}`);
@@ -287,7 +289,7 @@ if (!filter || filter === 'ref') {
   }
 }
 
-await worker?.terminate();
+await (worker as Worker | null)?.terminate();
 console.log(`\n${geprueft} Aufgaben und Einträge geprüft in ${Math.round((performance.now() - started) / 1000)} s.`);
 if (warnungen.length) console.log(`\n${warnungen.length} Warnungen:\n${warnungen.join('\n')}`);
 if (fehler.length) {

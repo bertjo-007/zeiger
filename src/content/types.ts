@@ -242,6 +242,7 @@ export type ReferenzKategorie =
   | 'datentyp'
   | 'praeprozessor'
   | 'funktion'
+  | 'makro'
   | 'format'
   | 'escape'
   | 'konstrukt';
@@ -252,6 +253,7 @@ export const KATEGORIEN: Record<ReferenzKategorie, { titel: string; text: string
   datentyp: { titel: 'Datentyp', text: 'Art eines Werts und sein Speicherbedarf.' },
   praeprozessor: { titel: 'Präprozessor', text: 'Anweisung an den Präprozessor, läuft vor dem Kompilieren.' },
   funktion: { titel: 'Bibliotheksfunktion', text: 'Funktion aus der Standardbibliothek, kein Teil der Sprache selbst.' },
+  makro: { titel: 'Makro oder Konstante', text: 'Vordefinierter Wert aus einem Header der Standardbibliothek, z. B. EXIT_SUCCESS oder INT_MAX.' },
   format: { titel: 'Formatangabe', text: 'Platzhalter in den Formattexten von printf und scanf.' },
   escape: { titel: 'Escape-Sequenz', text: 'Sonderzeichen in Zeichen- und Textkonstanten.' },
   konstrukt: { titel: 'Sprachkonstrukt', text: 'Aufbau aus mehreren Teilen der Sprache.' },

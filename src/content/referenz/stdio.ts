@@ -31,7 +31,59 @@ export const eintraege: ReferenzEintrag[] = [
       md`\`\n\` vergessen: Die nächste Ausgabe klebt an derselben Zeile.`,
       md`\`printf(text)\` mit einer Variablen als Formattext. Enthält sie ein \`%\`, liest printf Werte, die es nicht gibt. Besser: \`printf("%s", text)\`.`,
     ],
-    lektionen: ['k01-l01'],
+    lektionen: ['k01-l01', 'k01-l03'],
     stichwoerter: ['Ausgabe', 'formatieren', 'Bildschirm', 'Text ausgeben'],
+  },
+  {
+    id: 'puts',
+    name: 'puts',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Gibt eine Zeichenkette aus und hängt automatisch einen Zeilenumbruch an. Kennt keine Platzhalter.`,
+    syntax: c`int puts(const char *text);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            puts("Motor an");
+            puts("Motor aus");
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        Motor an
+        Motor aus
+      `,
+    },
+    fehler: [md`Zusätzliches \`\n\` im Text erzeugt eine Leerzeile, weil \`puts\` selbst schon einen Zeilenumbruch anhängt.`, md`Platzhalter wie \`%d\` werden nicht ersetzt, sondern wörtlich ausgegeben.`],
+    lektionen: ['k01-l03', 'k01-l07'],
+    stichwoerter: ['Ausgabe', 'Zeile ausgeben'],
+  },
+  {
+    id: 'putchar',
+    name: 'putchar',
+    kategorie: 'funktion',
+    header: 'stdio.h',
+    kurz: md`Gibt genau ein Zeichen aus.`,
+    syntax: c`int putchar(int zeichen);`,
+    beispiel: {
+      code: c`
+        #include <stdio.h>
+
+        int main(void) {
+            putchar('O');
+            putchar('K');
+            putchar('\n');
+            return 0;
+        }
+      `,
+      ausgabe: out`
+        OK
+      `,
+    },
+    fehler: [md`Doppelte statt einfache Anführungszeichen: \`putchar("A")\` übergibt einen String, nicht ein Zeichen. Richtig ist \`putchar('A')\`.`],
+    lektionen: ['k01-l03'],
+    stichwoerter: ['Zeichen ausgeben'],
   },
 ];
