@@ -1887,6 +1887,123 @@ kbd {
   margin: 2rem 0 0.85rem;
 }
 
+/* ---------- Lernpfad ---------- */
+.pfad-marke {
+  color: var(--accent);
+}
+.outline-chapter > button .pfad-marke {
+  margin-left: 0.35rem;
+  vertical-align: -0.1em;
+}
+.outline-lesson .pfad-marke {
+  margin-left: auto;
+}
+.chapter-card .nr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pfad-chip {
+  margin-left: 0.5rem;
+  vertical-align: 0.1em;
+  font-size: 0.72rem;
+}
+.pfad-hinweis {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+.pfad-hinweis svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--accent);
+}
+.notice-pfad {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.notice-pfad svg {
+  color: var(--accent-strong);
+}
+.pfad-panel {
+  display: grid;
+  gap: 1.25rem;
+}
+.pfad-kopf {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .pfad-kopf {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.pfad-kurz {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.93rem;
+}
+.pfad-stand {
+  display: grid;
+  gap: 0.6rem;
+}
+.pfad-liste {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+.pfad-zeile {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.93rem;
+}
+.pfad-zeile:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.pfad-zeile .nr,
+.pfad-zeile .zahl {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.pfad-zeile .zahl.ok {
+  color: var(--ok);
+}
+.pfad-zeile .t {
+  font-weight: 580;
+}
+.pfad-zeile .sub {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.84rem;
+  color: var(--text-3);
+}
+.pfad-fehlt {
+  font-size: 0.88rem;
+  color: var(--text-2);
+}
+.pfad-fehlt ul {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+
 /* ---------- Kapitelseite ---------- */
 .lesson-rows {
   display: grid;

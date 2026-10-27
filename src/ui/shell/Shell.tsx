@@ -13,13 +13,15 @@ import {
   MagnifyingGlass,
   Repeat,
   Exam,
+  Truck,
 } from '@phosphor-icons/react';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { findeAufgabe, findeKapitel, findeLektion, KAPITEL } from '../../content/kurs.ts';
+import { lektionImPfad, pfadAbschnitt } from '../../content/lernpfade.ts';
 import { REFERENZ } from '../../content/referenz/index.ts';
 import { kapitelFortschritt } from '../../progress/stats.ts';
-import { useAufgabeStaende, useFaellig, useLektionStaende, useTests } from '../hooks.ts';
+import { useAufgabeStaende, useFaellig, useLektionStaende, useLernpfad, useTests } from '../hooks.ts';
 import { BibliothekSchublade } from '../pages/Bibliothek.tsx';
 import { SearchPalette } from './SearchPalette.tsx';
 import { compiler } from '../../compiler/host.ts';
@@ -59,6 +61,7 @@ function Outline({ onNavigate }: { onNavigate(): void }) {
   const lektionen = useLektionStaende();
   const aufgaben = useAufgabeStaende();
   const tests = useTests();
+  const pfad = useLernpfad();
   const aktuellesKapitel = useMemo(() => {
     const [, a, b] = pathname.split('/');
     if (a === 'lektion') return findeLektion(b)?.kapitel.id;
@@ -86,7 +89,10 @@ function Outline({ onNavigate }: { onNavigate(): void }) {
               return n;
             })}>
               <span className="outline-nr">{String(k.nr).padStart(2, '0')}</span>
-              <span>{k.titel}</span>
+              <span>
+                {k.titel}
+                {pfad && pfadAbschnitt(pfad, k.id) && <Truck size={13} className="pfad-marke" alt={`Für ${pfad.titel}`} />}
+              </span>
               {auf ? <CaretDown size={14} color="var(--text-3)" /> : <CaretRight size={14} color="var(--text-3)" />}
               <div className={`bar${f.anteil >= 0.999 ? ' bar-ok' : ''}`} aria-label={`${Math.round(f.anteil * 100)} Prozent`}>
                 <span style={{ width: `${Math.round(f.anteil * 100)}%` }} />
@@ -104,6 +110,7 @@ function Outline({ onNavigate }: { onNavigate(): void }) {
                     <NavLink key={l.id} to={`/lektion/${l.id}`} className={({ isActive }) => `outline-lesson${isActive ? ' active' : ''}`} onClick={onNavigate}>
                       {fertig ? <CheckCircle size={14} weight="fill" className="done" /> : besucht ? <CircleHalf size={14} color="var(--text-3)" /> : <Circle size={14} color="var(--text-3)" />}
                       <span>{l.titel}</span>
+                      {pfad && lektionImPfad(pfad, l.id) && <Truck size={13} className="pfad-marke" alt={`Für ${pfad.titel}`} />}
                     </NavLink>
                   );
                 })}

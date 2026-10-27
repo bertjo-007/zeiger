@@ -3,8 +3,9 @@
  * stimmen, prüft `npm run validate` mit dem echten Clang.
  */
 import { describe, expect, it } from 'vitest';
-import { alleAufgaben, KAPITEL, LEKTIONEN, THEMEN } from '../src/content/kurs.ts';
+import { alleAufgaben, findeKapitel, findeLektion, KAPITEL, LEKTIONEN, THEMEN } from '../src/content/kurs.ts';
 import { REFERENZ } from '../src/content/referenz/index.ts';
+import { LERNPFADE, lektionImPfad, pfadLektionen } from '../src/content/lernpfade.ts';
 import { isCodeAufgabe } from '../src/content/types.ts';
 import { LUECKE } from '../src/exercises/checker.ts';
 
@@ -83,5 +84,38 @@ describe('Bibliothek', () => {
     expect(woerter).toHaveLength(44);
     const text = REFERENZ.map((r) => `${r.name} ${(r.stichwoerter ?? []).join(' ')} ${r.syntax}`).join('\n');
     for (const w of woerter) expect(new RegExp(`(^|[^\\w])${w}([^\\w]|$)`, 'm').test(text), w).toBe(true);
+  });
+});
+
+describe('Lernpfade', () => {
+  it('verweisen nur auf vorhandene Kapitel und Lektionen im richtigen Kapitel', () => {
+    for (const p of LERNPFADE) {
+      for (const a of p.abschnitte) {
+        expect(findeKapitel(a.kapitel), `${p.id}: ${a.kapitel}`).toBeDefined();
+        for (const id of a.lektionen ?? []) expect(findeLektion(id)?.kapitel.id, `${p.id}: ${id}`).toBe(a.kapitel);
+      }
+      for (const k of Object.keys(p.auslassen)) {
+        expect(findeKapitel(k), `${p.id}: ${k}`).toBeDefined();
+        expect(p.abschnitte.some((a) => a.kapitel === k), `${p.id}: ${k} ist markiert und ausgelassen`).toBe(false);
+      }
+    }
+  });
+
+  it('markiert jedes Kapitel höchstens einmal', () => {
+    for (const p of LERNPFADE) {
+      const ks = p.abschnitte.map((a) => a.kapitel);
+      expect(new Set(ks).size).toBe(ks.length);
+    }
+  });
+
+  it('löst Amitruck richtig auf', () => {
+    const p = LERNPFADE.find((x) => x.id === 'amitruck')!;
+    const ids = pfadLektionen(p).map((l) => l.id);
+    expect(ids).toContain('k11-l06');
+    expect(ids).toContain('k09-l05');
+    expect(ids).not.toContain('k09-l04');
+    expect(ids.some((id) => id.startsWith('k03-') || id.startsWith('k10-'))).toBe(false);
+    expect(lektionImPfad(p, 'k08-l04')?.kapitel).toBe('k08');
+    expect(lektionImPfad(p, 'k08-l05')).toBeUndefined();
   });
 });

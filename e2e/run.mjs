@@ -62,12 +62,14 @@ await schritt('Startseite', async () => {
   }
   await page.waitForFunction(() => navigator.serviceWorker?.controller !== null || !document.querySelector('script[src*="/assets/"]'), { timeout: 20000 }).catch(() => {});
   await waitText(page, 'Strukturen und weitere Datentypen');
+  await waitText(page, 'Lernpfad Amitruck');
   await shot(page, 'start');
 });
 
 await schritt('Beispiel einer Lektion ausführen', async () => {
   await page.goto(BASE + '/lektion/k09-l03', { waitUntil: 'load' });
   await waitText(page, 'Zeiger als Parameter');
+  await waitText(page, 'Für Amitruck:');
   await waitCompiler(page);
   await clickText(page, 'Ausführen');
   await waitText(page, 'links = 7, rechts = 3', 240000);

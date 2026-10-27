@@ -54,6 +54,15 @@ export function EinstellungenPage() {
             </span>
             <Segment label="Schriftgrösse" value={s.editorSchrift} onChange={(editorSchrift) => set({ editorSchrift })} options={[13, 14, 15, 16, 18].map((v) => ({ v, t: `${v}` }))} />
           </div>
+          <div className="row">
+            <span className="field-label" style={{ minWidth: '9rem' }}>
+              Lernpfad markieren
+            </span>
+            <Segment label="Lernpfad" value={s.lernpfad} onChange={(lernpfad) => set({ lernpfad })} options={[{ v: 'amitruck', t: 'Amitruck' }, { v: 'aus', t: 'Keiner' }]} />
+          </div>
+          <p className="muted" style={{ fontSize: '0.86rem' }}>
+            Ein Lernpfad markiert die Lektionen, die ein Vorhaben braucht, und zeigt auf der Startseite den Fortschritt darin.
+          </p>
         </section>
 
         <section className="setting">

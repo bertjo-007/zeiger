@@ -13,12 +13,14 @@ import {
   PencilSimpleLine,
   Target,
   Terminal,
+  Truck,
   WarningCircle,
   XCircle,
 } from '@phosphor-icons/react';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
 import { findeLektion, nachbarn } from '../../content/kurs.ts';
+import { lektionImPfad } from '../../content/lernpfade.ts';
 import { REFERENZ } from '../../content/referenz/index.ts';
 import type { Lektion } from '../../content/types.ts';
 import { AufgabeKarte } from '../../exercises/AufgabeKarte.tsx';
@@ -26,7 +28,7 @@ import { dateienAus } from '../../exercises/checker.ts';
 import { besucheLektion, setzeLektionAbgeschlossen } from '../../progress/actions.ts';
 import { CodeBeispiel } from '../CodeBeispiel.tsx';
 import { CodeBlock, OutputBlock, parseLines } from '../code/CodeBlock.tsx';
-import { useAufgabeStaende, useLektionStaende } from '../hooks.ts';
+import { useAufgabeStaende, useLektionStaende, useLernpfad } from '../hooks.ts';
 import { Inline, Markdown } from '../Markdown.tsx';
 import { NotFound } from './NotFound.tsx';
 
@@ -113,6 +115,8 @@ export function LektionPage() {
   const staende = useLektionStaende();
   const aufgaben = useAufgabeStaende();
   const aktiv = useAktiverTeil();
+  const pfad = useLernpfad();
+  const pfadTeil = pfad ? lektionImPfad(pfad, id) : undefined;
 
   useEffect(() => {
     if (hit) void besucheLektion(id);
@@ -151,6 +155,14 @@ export function LektionPage() {
             )}
           </div>
           <h1>{l.titel}</h1>
+          {pfad && pfadTeil && (
+            <p className="pfad-hinweis">
+              <Truck size={16} />
+              <span>
+                <strong>Für {pfad.titel}:</strong> <Inline text={pfadTeil.wofuer} />
+              </span>
+            </p>
+          )}
         </header>
 
         <Teil id="ziel">

@@ -12,9 +12,11 @@ export interface Settings {
   eingabe: 'interaktiv' | 'vorab';
   /** Compiler gleich beim Öffnen der App laden (rund 30 MB beim ersten Mal). */
   vorladen: boolean;
+  /** Lernpfad, dessen Lektionen markiert werden. */
+  lernpfad: 'amitruck' | 'aus';
 }
 
-export const DEFAULT_SETTINGS: Settings = { theme: 'system', editorSchrift: 14, zeitlimit: 5, eingabe: 'interaktiv', vorladen: true };
+export const DEFAULT_SETTINGS: Settings = { theme: 'system', editorSchrift: 14, zeitlimit: 5, eingabe: 'interaktiv', vorladen: true, lernpfad: 'amitruck' };
 
 const KEY = 'settings';
 

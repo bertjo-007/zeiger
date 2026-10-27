@@ -1,9 +1,10 @@
-import { CheckCircle, Circle, CircleHalf, Exam } from '@phosphor-icons/react';
+import { CheckCircle, Circle, CircleHalf, Exam, Truck } from '@phosphor-icons/react';
 import { Link, useParams } from 'react-router';
 import { findeKapitel } from '../../content/kurs.ts';
+import { lektionImPfad, pfadAbschnitt } from '../../content/lernpfade.ts';
 import { BESTANDEN_AB, kapitelFortschritt } from '../../progress/stats.ts';
-import { useAufgabeStaende, useLektionStaende, useTests } from '../hooks.ts';
-import { Markdown } from '../Markdown.tsx';
+import { useAufgabeStaende, useLektionStaende, useLernpfad, useTests } from '../hooks.ts';
+import { Inline, Markdown } from '../Markdown.tsx';
 import { NotFound } from './NotFound.tsx';
 
 export function KapitelPage() {
@@ -12,8 +13,11 @@ export function KapitelPage() {
   const lektionen = useLektionStaende();
   const aufgaben = useAufgabeStaende();
   const tests = useTests();
+  const pfad = useLernpfad();
   if (!k) return <NotFound />;
   const f = kapitelFortschritt(k, lektionen, aufgaben, tests);
+  const abschnitt = pfad ? pfadAbschnitt(pfad, k.id) : undefined;
+  const auslassen = pfad?.auslassen[k.id];
 
   return (
     <div className="page-narrow">
@@ -22,6 +26,23 @@ export function KapitelPage() {
         <h1>{k.titel}</h1>
         <Markdown text={k.kurz} />
       </header>
+      {pfad && abschnitt && (
+        <div className="notice notice-pfad" style={{ marginBottom: '1rem' }}>
+          <Truck size={18} />
+          <span>
+            <strong>Für {pfad.titel}:</strong> <Inline text={abschnitt.wofuer} />.{' '}
+            {abschnitt.lektionen ? 'Nötig sind die markierten Lektionen.' : 'Das ganze Kapitel ist nötig.'}
+          </span>
+        </div>
+      )}
+      {pfad && auslassen && (
+        <div className="notice" style={{ marginBottom: '1rem' }}>
+          <Truck size={18} />
+          <span>
+            <strong>Für {pfad.titel} nicht nötig.</strong> <Inline text={auslassen} />
+          </span>
+        </div>
+      )}
       <div className="panel panel-pad stack" style={{ gap: '0.6rem', marginBottom: '1.5rem' }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
           <strong>{Math.round(f.anteil * 100)} % erledigt</strong>
@@ -43,6 +64,11 @@ export function KapitelPage() {
               <span>
                 <div style={{ fontWeight: 560 }}>
                   {k.nr}.{i + 1} {l.titel}
+                  {pfad && lektionImPfad(pfad, l.id) && (
+                    <span className="chip chip-accent pfad-chip">
+                      <Truck size={12} /> {pfad.titel}
+                    </span>
+                  )}
                 </div>
                 <div className="sub">
                   etwa {l.dauer} Min. · Übungen {geloest}/{l.uebungen.length}

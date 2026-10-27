@@ -1,7 +1,14 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { compiler, type CompilerStatus } from '../compiler/host.ts';
+import { findeLernpfad, type Lernpfad } from '../content/lernpfade.ts';
 import { db, type AufgabeStand, type LektionStand } from '../progress/db.ts';
+import { useSettings } from './settings.ts';
+
+/** Der in den Einstellungen gewählte Lernpfad, oder undefined, wenn keiner markiert wird. */
+export function useLernpfad(): Lernpfad | undefined {
+  return findeLernpfad(useSettings().lernpfad);
+}
 
 export function useCompilerStatus(): CompilerStatus {
   const [s, set] = useState(compiler.status);
