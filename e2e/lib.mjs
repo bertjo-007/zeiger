@@ -22,7 +22,12 @@ export async function launch() {
 
 export function watch(page, errors) {
   page.on('console', (m) => {
-    if (m.type() === 'error' && !m.text().includes('favicon')) errors.push(`console: ${m.text()}`);
+    // Fehlantworten prüft der response-Handler mit Adresse; die Konsolenmeldung dazu hat keine.
+    if (m.type() === 'error' && !m.text().includes('favicon') && !m.text().startsWith('Failed to load resource')) errors.push(`console: ${m.text()}`);
+  });
+  page.on('response', (r) => {
+    // GitHub Pages liefert Unterseiten über 404.html aus: Status 404, Inhalt ist die App.
+    if (r.status() >= 400 && r.request().resourceType() !== 'document') errors.push(`${r.status()}: ${r.url()}`);
   });
   page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
 }
